@@ -7,7 +7,7 @@
 ## Instalação e execução
 
 1. Faça um clone desse repositório;
-2. Entre na pasta rodando `cd GoStack_FastFeet`;
+2. Entre na pasta rodando `cd FastFeet_API`;
 3. Rode `yarn` para instalar as dependências;
 4. Crie um banco de dados no `postgres` com o nome de `fastfeet`;
 7. Instancie uma base de dados `redis` (será usado para fila de e-mails);
