@@ -1,41 +1,42 @@
 <h1 align="center">
-  Fastfeet
+  FastFeet API
 </h1>
 
-<h3 align="center">
-  Desafio Bootcamp
-</h3>
+<p>Software de controle de entregas para transportadora. API criada em Node.JS utilizando Express e Sequelize, com tecnologias como autenticação JWT, Redis e PostgreSQL</p>
 
-<h3 align="center">
-  :warning: Backend do desafio final do Bootcamp GoStack :warning:
-</h3>
+## Instalação e execução
 
-<p>Esse desafio faz parte do Desafio Final, que é uma aplicação completa (Back-end, Front-end e Mobile) que é avaliada para emissão do Certificado do Bootcamp GoStack</p>
+1. Faça um clone desse repositório;
+2. Entre na pasta rodando `cd GoStack_FastFeet`;
+3. Rode `yarn` para instalar as dependências;
+4. Crie um banco de dados no `postgres` com o nome de `fastfeet`;
+7. Instancie uma base de dados `redis` (será usado para fila de e-mails);
+8. Renomeie o arquivo `.env.example` para `.env`;
+9. Coloque as suas credenciais dentro do `.env`;
+10. Rode `yarn sequelize db:migrate` para executar as migrations;
+11. Rode `yarn dev` para iniciar o servidor.
+12. Rode `yarn queue` para iniciar o servidor de filas.
 
-<blockquote align="center">“Não espere para plantar, apenas tenha paciência para colher”!</blockquote>
+## Funcionalidades
 
-## :rocket: Sobre o desafio
+### Administrador
+- Criação de contas
+- Edição de contas
+- Login no Software
+- Cadastro de entregadores
+- Upload de imagem (avatar do entregador)
+- Cadastro de destinatários
+- Cadastro de Entregas
+- Cancelamento de Entregas
 
-A aplicação que iremos criar é um app para uma transportadora fictícia, o FastFeet.
+### Entregador
+- Listagem de Entregas pendentes
+- Inicio da Entrega
+- Listagem de Entregas finalizadas
+- Finalização da Entrega
+- Listagem dos Problemas na entrega
+- Criação de novo Problema na entrega
 
-### **Um pouco sobre as ferramentas**
+## Rotas
 
-A aplicaçã foi criada utilizando o [Express](https://expressjs.com/), além das seguintes ferramentas:
-
-- Sucrase + Nodemon;
-- ESLint + Prettier + EditorConfig;
-- Sequelize (PostgreSQL);
-
-### **Funcionalidades**
-
-Abaixo estão descritas as funcionalidades da aplicação.
-
-### **1. Autenticação**
-
-- A autenticação é feita utilizando JWT.
-- O administrador deve fornecer usuário e senha.
-
-### 2. Gestão de destinatários
-
-- O cadastro de destinatários só pode ser feito por administradores autenticados na aplicação.
-- O destinatário não pode se autenticar no sistema, ou seja, não possui senha.
+<a href="https://documenter.getpostman.com/view/7792112/SzS2wTao?version=latest" target="_blank">Documentação Postman<a/>
