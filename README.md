@@ -2,7 +2,7 @@
   FastFeet API
 </h1>
 
-<p>Software de controle de entregas para transportadora. API criada em Node.JS utilizando Express e Sequelize, com tecnologias como autenticação JWT, Redis e PostgreSQL</p>
+<p>API para software de controle de entregas em uma transportadora. Feito em Node.JS utilizando Express e Sequelize, com tecnologias como autenticação JWT, Redis e PostgreSQL</p>
 
 ## Instalação e execução
 
