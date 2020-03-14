@@ -14,9 +14,7 @@
 8. Renomeie o arquivo `.env.example` para `.env`;
 9. Coloque as suas credenciais dentro do `.env`;
 10. Rode `yarn sequelize db:migrate` para executar as migrations;
-10. Rode `yarn sequelize db:seed:all` para adicionar o administrador no banco de dados: 
-<br>
-`e-mail: 'admin@fastfeet.com' | senha: '123456'`
+10. Rode `yarn sequelize db:seed:all` para adicionar o administrador no banco de dados:  `e-mail: 'admin@fastfeet.com' | senha: '123456'`
 11. Rode `yarn dev` para iniciar o servidor.
 12. Rode `yarn queue` para iniciar o servidor de filas.
 
