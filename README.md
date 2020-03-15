@@ -14,13 +14,13 @@
 2. Entre na pasta rodando `cd FastFeet_API`;
 3. Rode `yarn` para instalar as dependências;
 4. Crie um banco de dados no `postgres` com o nome de `fastfeet`;
-7. Instancie uma base de dados `redis` (será usado para fila de e-mails);
-8. Renomeie o arquivo `.env.example` para `.env`;
-9. Coloque as suas credenciais dentro do `.env`;
-10. Rode `yarn sequelize db:migrate` para executar as migrations;
-11. Rode `yarn sequelize db:seed:all` para adicionar o administrador no banco de dados:  `e-mail: 'admin@fastfeet.com' | senha: '123456'`
-12. Rode `yarn dev` para iniciar o servidor.
-13. Rode `yarn queue` para iniciar o servidor de filas.
+5. Instancie uma base de dados `redis` (será usado para fila de e-mails);
+6. Renomeie o arquivo `.env.example` para `.env`;
+7. Coloque as suas credenciais dentro do `.env`;
+8. Rode `yarn sequelize db:migrate` para executar as migrations;
+9. Rode `yarn sequelize db:seed:all` para adicionar o administrador no banco de dados:  `e-mail: 'admin@fastfeet.com' | senha: '123456'`
+10. Rode `yarn dev` para iniciar o servidor.
+11. Rode `yarn queue` para iniciar o servidor de filas.
 
 ## Funcionalidades
 
@@ -54,13 +54,13 @@
 2. Run the command `cd FastFeet_API`;
 3. Run the command `yarn` to install dependencies;
 4. Create a database in `postgres` with the name `fastfeet`;
-7. Start a `redis` database (used to e-mail's queue);
-8. Rename the file `.env.example` to `.env`;
-9. Update `.env` with your credentials;
-10. Run the command `yarn sequelize db:migrate` to execute the migrations;
-10. Run the comman `yarn sequelize db:seed:all` to add the Administrator in database:  `e-mail: 'admin@fastfeet.com' | password: '123456'`
-11. Run the comman `yarn dev` to start the server.
-12. Run the comman `yarn queue` to start the queues server.
+5. Start a `redis` database (used to e-mail's queue);
+6. Rename the file `.env.example` to `.env`;
+7. Update `.env` with your credentials;
+8. Run the command `yarn sequelize db:migrate` to execute the migrations;
+9. Run the comman `yarn sequelize db:seed:all` to add the Administrator in database:  `e-mail: 'admin@fastfeet.com' | password: '123456'`
+10. Run the comman `yarn dev` to start the server.
+11. Run the comman `yarn queue` to start the queues server.
 
 ## Features
 
