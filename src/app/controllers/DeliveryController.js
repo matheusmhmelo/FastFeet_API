@@ -115,7 +115,7 @@ class DeliveryController {
     }
 
     if (req.query.page) {
-      limit = 10;
+      limit = 5;
       offset = limit * (req.query.page - 1);
     }
 

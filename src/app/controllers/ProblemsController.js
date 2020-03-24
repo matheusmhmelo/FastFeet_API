@@ -43,25 +43,24 @@ class DeliveryController {
   }
 
   async index(req, res) {
+    let where = {};
     let limit = null;
     let offset = null;
 
     if (req.query.page) {
-      limit = 10;
+      limit = 5;
       offset = limit * (req.query.page - 1);
     }
 
     if (req.params.deliveries) {
       if (req.query.page) {
-        limit = 10;
+        limit = 5;
         offset = limit * (req.query.page - 1);
       }
 
       const problems = await DeliveryProblems.findAll({
         attributes: ['delivery_id']
       }).map(u => u.get('delivery_id'));
-
-      let where = { id: problems };
 
       if (req.query.q) {
         where = {
@@ -70,6 +69,8 @@ class DeliveryController {
             [Op.like]: `%${req.query.q}%`
           }
         };
+      } else {
+        where = { id: problems };
       }
 
       const deliveryWithProblems = await Delivery.findAll({
@@ -114,7 +115,14 @@ class DeliveryController {
       return res.json(deliveryWithProblems);
     }
 
+    if (req.query.q) {
+      where = {
+        delivery_id: req.query.q
+      };
+    }
+
     const problems = await DeliveryProblems.findAll({
+      where,
       limit,
       offset
     });
