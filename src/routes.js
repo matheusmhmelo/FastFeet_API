@@ -51,23 +51,29 @@ routes.post('/files', upload.single('file'), FileController.store);
 
 // Deliveryman
 routes.post('/deliveryman', DeliverymanController.store);
+routes.get('/deliveryman/:deliveryman_id', DeliverymanController.index);
 routes.get('/deliveryman', DeliverymanController.index);
 routes.put('/deliveryman/:id', DeliverymanController.update);
 routes.delete('/deliveryman/:id', DeliverymanController.delete);
 
 // Delivery
 routes.post('/delivery', DeliveryController.store);
+routes.get('/delivery/info/:delivery_id', DeliveryController.index);
 routes.get('/delivery', DeliveryController.index);
 routes.put('/delivery/:id', DeliveryController.update);
 routes.delete('/delivery/:id', DeliveryController.delete);
 
 // Problems
 routes.get('/problem', ProblemsController.index);
+routes.get('/problem/:deliveries', ProblemsController.index);
 routes.delete('/problem/:id/cancel-delivery', ProblemsController.delete);
 
 // Recipient
 routes.post('/recipient', RecipientController.store);
-routes.put('/recipient', RecipientController.update);
+routes.get('/recipient/:recipient_id', RecipientController.index);
+routes.get('/recipient', RecipientController.index);
+routes.put('/recipient/:id', RecipientController.update);
+routes.delete('/recipient/:id', RecipientController.delete);
 
 // Users
 routes.put('/users', UserController.update);

@@ -1,6 +1,8 @@
+import { Op } from 'sequelize';
 import Delivery from '../models/Delivery';
 import Deliveryman from '../models/Deliveryman';
 import Recipient from '../models/Recipient';
+import File from '../models/File';
 import DeliveryProblems from '../models/DeliveryProblems';
 
 import DeliveryCanceled from '../jobs/DeliveryCanceled';
@@ -41,15 +43,83 @@ class DeliveryController {
   }
 
   async index(req, res) {
-    const problems = await DeliveryProblems.findAll({
-      attributes: ['delivery_id']
-    }).map(u => u.get('delivery_id'));
+    let limit = null;
+    let offset = null;
 
-    const deliveryWithProblems = await Delivery.findAll({
-      where: { id: problems }
+    if (req.query.page) {
+      limit = 10;
+      offset = limit * (req.query.page - 1);
+    }
+
+    if (req.params.deliveries) {
+      if (req.query.page) {
+        limit = 10;
+        offset = limit * (req.query.page - 1);
+      }
+
+      const problems = await DeliveryProblems.findAll({
+        attributes: ['delivery_id']
+      }).map(u => u.get('delivery_id'));
+
+      let where = { id: problems };
+
+      if (req.query.q) {
+        where = {
+          id: problems,
+          product: {
+            [Op.like]: `%${req.query.q}%`
+          }
+        };
+      }
+
+      const deliveryWithProblems = await Delivery.findAll({
+        where,
+        limit,
+        offset,
+        attributes: ['id', 'product', 'canceled_at', 'start_date', 'end_date'],
+        include: [
+          {
+            model: Deliveryman,
+            as: 'deliveryman',
+            attributes: ['name', 'email'],
+            include: [
+              {
+                model: File,
+                as: 'avatar'
+              }
+            ]
+          },
+          {
+            model: Recipient,
+            as: 'recipient',
+            attributes: [
+              'name',
+              'address',
+              'number',
+              'complement',
+              'state',
+              'city',
+              'zipcode'
+            ]
+          },
+          {
+            model: File,
+            as: 'signature',
+            attributes: ['name', 'path', 'url']
+          }
+        ],
+        order: [['id', 'ASC']]
+      });
+
+      return res.json(deliveryWithProblems);
+    }
+
+    const problems = await DeliveryProblems.findAll({
+      limit,
+      offset
     });
 
-    return res.json(deliveryWithProblems);
+    return res.json(problems);
   }
 }
 
