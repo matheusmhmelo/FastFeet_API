@@ -52,82 +52,61 @@ class DeliveryController {
       offset = limit * (req.query.page - 1);
     }
 
-    if (req.params.deliveries) {
-      if (req.query.page) {
-        limit = 5;
-        offset = limit * (req.query.page - 1);
-      }
-
-      const problems = await DeliveryProblems.findAll({
-        attributes: ['delivery_id']
-      }).map(u => u.get('delivery_id'));
-
-      if (req.query.q) {
-        where = {
-          id: problems,
-          product: {
-            [Op.like]: `%${req.query.q}%`
-          }
-        };
-      } else {
-        where = { id: problems };
-      }
-
-      const deliveryWithProblems = await Delivery.findAll({
-        where,
-        limit,
-        offset,
-        attributes: ['id', 'product', 'canceled_at', 'start_date', 'end_date'],
-        include: [
-          {
-            model: Deliveryman,
-            as: 'deliveryman',
-            attributes: ['name', 'email'],
-            include: [
-              {
-                model: File,
-                as: 'avatar'
-              }
-            ]
-          },
-          {
-            model: Recipient,
-            as: 'recipient',
-            attributes: [
-              'name',
-              'address',
-              'number',
-              'complement',
-              'state',
-              'city',
-              'zipcode'
-            ]
-          },
-          {
-            model: File,
-            as: 'signature',
-            attributes: ['name', 'path', 'url']
-          }
-        ],
-        order: [['id', 'ASC']]
-      });
-
-      return res.json(deliveryWithProblems);
-    }
+    const problems = await DeliveryProblems.findAll({
+      attributes: ['delivery_id']
+    }).map(u => u.get('delivery_id'));
 
     if (req.query.q) {
       where = {
-        delivery_id: req.query.q
+        id: problems,
+        product: {
+          [Op.like]: `%${req.query.q}%`
+        }
       };
+    } else {
+      where = { id: problems };
     }
 
-    const problems = await DeliveryProblems.findAll({
+    const deliveryWithProblems = await Delivery.findAll({
       where,
       limit,
-      offset
+      offset,
+      attributes: ['id', 'product', 'canceled_at', 'start_date', 'end_date'],
+      include: [
+        {
+          model: Deliveryman,
+          as: 'deliveryman',
+          attributes: ['name', 'email'],
+          include: [
+            {
+              model: File,
+              as: 'avatar'
+            }
+          ]
+        },
+        {
+          model: Recipient,
+          as: 'recipient',
+          attributes: [
+            'name',
+            'address',
+            'number',
+            'complement',
+            'state',
+            'city',
+            'zipcode'
+          ]
+        },
+        {
+          model: File,
+          as: 'signature',
+          attributes: ['name', 'path', 'url']
+        }
+      ],
+      order: [['id', 'ASC']]
     });
 
-    return res.json(problems);
+    return res.json(deliveryWithProblems);
   }
 }
 

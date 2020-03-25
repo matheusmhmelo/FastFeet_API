@@ -1,4 +1,3 @@
-import { Op } from 'sequelize';
 import * as Yup from 'yup';
 import Recipient from '../models/Recipient';
 
@@ -62,35 +61,8 @@ class RecipientController {
   }
 
   async index(req, res) {
-    let where = {};
-    let limit = null;
-    let offset = null;
-
-    if (req.params.recipient_id) {
-      where = { id: req.params.recipient_id };
-    }
-
-    if (req.query.q) {
-      where = {
-        name: {
-          [Op.like]: `%${req.query.q}%`
-        }
-      };
-    }
-
-    if (req.query.page) {
-      limit = 5;
-      offset = limit * (req.query.page - 1);
-    }
-
-    const recipients = await Recipient.findAll({
-      where,
-      limit,
-      offset,
-      order: [['id', 'ASC']]
-    });
-
-    return res.json(recipients);
+    const recipient = await Recipient.findByPk(req.params.recipient_id);
+    return res.json(recipient);
   }
 
   async delete(req, res) {
