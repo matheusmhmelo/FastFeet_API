@@ -29,7 +29,14 @@ class DeliveryEndController {
         deliveryman_id: req.params.deliveryman_id,
         end_date: { [Op.ne]: null }
       },
-      attributes: ['id', 'product', 'canceled_at', 'start_date', 'end_date'],
+      attributes: [
+        'id',
+        'product',
+        'canceled_at',
+        'start_date',
+        'end_date',
+        'createdAt'
+      ],
       include: [
         {
           model: Deliveryman,

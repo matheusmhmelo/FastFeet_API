@@ -65,7 +65,14 @@ class DeliveryStartController {
         canceled_at: null,
         end_date: null
       },
-      attributes: ['id', 'product', 'canceled_at', 'start_date', 'end_date'],
+      attributes: [
+        'id',
+        'product',
+        'canceled_at',
+        'start_date',
+        'end_date',
+        'createdAt'
+      ],
       include: [
         {
           model: Deliveryman,

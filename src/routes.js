@@ -6,6 +6,7 @@ import UserController from './app/controllers/UserController';
 import RecipientController from './app/controllers/RecipientController';
 import RecipientSearchController from './app/controllers/RecipientSearchController';
 import SessionController from './app/controllers/SessionController';
+import DeliverymanSessionController from './app/controllers/DeliverymanSessionController';
 import FileController from './app/controllers/FileController';
 import DeliverymanController from './app/controllers/DeliverymanController';
 import DeliverymanSearchController from './app/controllers/DeliverymanSearchController';
@@ -28,6 +29,7 @@ routes.post('/users', UserController.store);
 
 // Session
 routes.post('/session', SessionController.store);
+routes.post('/deliveryman/session', DeliverymanSessionController.store);
 
 // Start Delivery
 routes.get('/delivery/:deliveryman_id', DeliveryStartController.index);
